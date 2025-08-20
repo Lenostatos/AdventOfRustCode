@@ -26,10 +26,6 @@ struct DigitCount {
 }
 
 impl DigitCount {
-    fn new(digit: char, count: usize) -> Self {
-        DigitCount { digit, count }
-    }
-
     fn parse(str: &str) -> Vec<DigitCount> {
         let mut digit_counts = vec![];
 
@@ -64,27 +60,81 @@ impl DigitCount {
 
 #[test]
 fn parse_digit_counts() {
-    assert_eq!(DigitCount::parse("1"), vec![DigitCount::new('1', 1)]);
-    assert_eq!(DigitCount::parse("11"), vec![DigitCount::new('1', 2)]);
-    assert_eq!(DigitCount::parse("111"), vec![DigitCount::new('1', 3)]);
+    assert_eq!(
+        DigitCount::parse("1"),
+        vec![DigitCount {
+            digit: '1',
+            count: 1
+        }]
+    );
+    assert_eq!(
+        DigitCount::parse("11"),
+        vec![DigitCount {
+            digit: '1',
+            count: 2
+        }]
+    );
+    assert_eq!(
+        DigitCount::parse("111"),
+        vec![DigitCount {
+            digit: '1',
+            count: 3
+        }]
+    );
     assert_eq!(
         DigitCount::parse("12"),
-        vec![DigitCount::new('1', 1), DigitCount::new('2', 1)]
+        vec![
+            DigitCount {
+                digit: '1',
+                count: 1
+            },
+            DigitCount {
+                digit: '2',
+                count: 1
+            }
+        ]
     );
     assert_eq!(
         DigitCount::parse("122"),
-        vec![DigitCount::new('1', 1), DigitCount::new('2', 2)]
+        vec![
+            DigitCount {
+                digit: '1',
+                count: 1
+            },
+            DigitCount {
+                digit: '2',
+                count: 2
+            }
+        ]
     );
     assert_eq!(
         DigitCount::parse("1122"),
-        vec![DigitCount::new('1', 2), DigitCount::new('2', 2)]
+        vec![
+            DigitCount {
+                digit: '1',
+                count: 2
+            },
+            DigitCount {
+                digit: '2',
+                count: 2
+            }
+        ]
     );
     assert_eq!(
         DigitCount::parse("112333"),
         vec![
-            DigitCount::new('1', 2),
-            DigitCount::new('2', 1),
-            DigitCount::new('3', 3)
+            DigitCount {
+                digit: '1',
+                count: 2
+            },
+            DigitCount {
+                digit: '2',
+                count: 1
+            },
+            DigitCount {
+                digit: '3',
+                count: 3
+            }
         ]
     );
 }
